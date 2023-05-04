@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import database.js.config.Config;
 import database.js.servers.Server;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.channels.Selector;
 import database.js.pools.ThreadPool;
@@ -169,7 +170,7 @@ public class HTTPServer extends Thread
       ServerSocketChannel server = ServerSocketChannel.open();
 
       server.configureBlocking(false);
-      server.bind(new InetSocketAddress(port));
+      server.bind(new InetSocketAddress(InetAddress.getByName(null), port));
       server.register(selector,SelectionKey.OP_ACCEPT);
 
       state = RUNNING;
